@@ -5,7 +5,7 @@ import { Row, Col, Menu, Icon } from 'antd'
 const SubMenu = Menu.SubMenu
 const MenuItemGroup = Menu.ItemGroup
 
-import 'stylus/pc_header'
+import 'stylus/pc/pc_header'
 
 export default class PCHeader extends React.Component {
   constructor() {
