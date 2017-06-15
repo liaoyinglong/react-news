@@ -77,5 +77,13 @@ module.exports = {
   //   new webpack.optimize.OccurenceOrderPlugin(),
   //   new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false }),
   // ]
-  plugins: [new extractTextWebpackPlugin('./src/style.css')]
+  plugins: [new extractTextWebpackPlugin('./src/style.css'),
+  new webpack.optimize.UglifyJsPlugin({
+    output: {
+      comments: false,  // remove all comments
+    },
+    compress: {
+      warnings: false
+    }
+  }),]
 };
