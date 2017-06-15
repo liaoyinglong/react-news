@@ -8,7 +8,6 @@ const FormItem = Form.Item
 const SubMenu = Menu.SubMenu
 const MenuItemGroup = Menu.ItemGroup
 
-import 'stylus/mobile/mobile_header'
 
 class MobileHeader extends React.Component {
   constructor() {

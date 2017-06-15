@@ -3,6 +3,10 @@ import ReactDOM from 'react-dom'
 // 引入 antd的样式
 import 'antd/lib/button/style/css'
 
+
+import '../stylus/mobile/mobile'
+import '../stylus/pc/pc'
+
 import MediaQuery from 'react-responsive'
 // pc端
 import PCIndex from 'pc/pc_index'
