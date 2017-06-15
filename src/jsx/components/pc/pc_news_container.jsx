@@ -5,6 +5,11 @@ import PCNewsBlock from './pc_news_block'
 import PCNewsImgBlock from './pc_news_img_block'
 const TabPane = Tabs.TabPane
 
+const img1 = require('../../../images/carousel_1.jpg')
+const img2 = require('../../../images/carousel_2.jpg')
+const img3 = require('../../../images/carousel_3.jpg')
+const img4 = require('../../../images/carousel_4.jpg')
+
 export default class PCNewContainer extends React.Component {
   render() {
     const settings = {
@@ -25,16 +30,16 @@ export default class PCNewContainer extends React.Component {
               <div className="carousel">
                 <Carousel {...settings}>
                   <div>
-                    <img src="/src/images/carousel_1.jpg" alt="" />
+                    <img src={img1} alt="" />
                   </div>
                   <div>
-                    <img src="/src/images/carousel_2.jpg" alt="" />
+                    <img src={img2} alt="" />
                   </div>
                   <div>
-                    <img src="/src/images/carousel_3.jpg" alt="" />
+                    <img src={img3} alt="" />
                   </div>
                   <div>
-                    <img src="/src/images/carousel_4.jpg" alt="" />
+                    <img src={img4} alt="" />
                   </div>
                 </Carousel>
               </div>

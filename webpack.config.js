@@ -43,7 +43,7 @@ module.exports = {
         loader: 'url-loader',
         options: {
           limit: 10000,
-          name: 'img/[name].[hash:7].[ext]'
+          name: '[name].[ext]'
         }
       },
       {
@@ -69,8 +69,8 @@ module.exports = {
   output: {
     path: __dirname,
     filename: "./src/bundle.js",
-    // publicPath: 'https://raw.githubusercontent.com/liaoyinglong/react-news/master/'
-    publicPath: '/'
+    publicPath: 'https://raw.githubusercontent.com/liaoyinglong/react-news/master/src/images/'
+    // publicPath: '/'
   },
   // plugins: debug ? [] : [
   //   new webpack.optimize.DedupePlugin(),

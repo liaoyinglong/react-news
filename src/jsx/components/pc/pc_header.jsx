@@ -8,7 +8,7 @@ const FormItem = Form.Item
 const SubMenu = Menu.SubMenu
 const MenuItemGroup = Menu.ItemGroup
 
-
+const logoImg = require('../../../images/logo.png')
 
 
 class PCHeader extends React.Component {
@@ -28,7 +28,7 @@ class PCHeader extends React.Component {
       this.setState({ hasLogined: true })
       this.setState({
         userNickName: localStorage.userNickName,
-        userId : localStorage.userId
+        userId: localStorage.userId
       })
     }
   }
@@ -90,7 +90,7 @@ class PCHeader extends React.Component {
           <Col span={2}></Col>
           <Col span={4}>
             <a href="/" className='logo'>
-              <img src="/src/images/logo.png" alt="logo" />
+              <img src={logoImg} alt="logo" />
               <span>ReactNews</span>
             </a>
           </Col>
