@@ -69,6 +69,7 @@ module.exports = {
   output: {
     path: __dirname,
     filename: "./src/bundle.js",
+    // publicPath: 'https://raw.githubusercontent.com/liaoyinglong/react-news/master/'
     publicPath: '/'
   },
   // plugins: debug ? [] : [
