@@ -60,6 +60,7 @@ module.exports = {
     extensions: ['.js', '.jsx', '.json', '.styl'],
     alias: {
       'stylus': path.resolve(__dirname, 'src/stylus'),
+      'asset': path.resolve(__dirname, 'src/asset'),
       'pc': path.resolve(__dirname, 'src/jsx/components/pc'),
       'mobile': path.resolve(__dirname, 'src/jsx/components/mobile'),
       'images': path.resolve(__dirname, 'src/images'),

@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { loginOrRegister } from 'asset/ajax.js'
+
 import { Row, Col, Menu, Icon, Tabs, message, Form, Input, Button, Checkbox, Modal } from 'antd'
 const TabPane = Tabs.TabPane
 const FormItem = Form.Item
@@ -7,6 +9,8 @@ const SubMenu = Menu.SubMenu
 const MenuItemGroup = Menu.ItemGroup
 
 import 'stylus/pc/pc_header'
+
+
 
 class PCHeader extends React.Component {
   constructor() {
@@ -17,15 +21,28 @@ class PCHeader extends React.Component {
       action: 'login',
       hasLogined: false,
       userNickName: '',
-      userId: 0
+      userId: 0,
     }
   }
   // this.setState is a function
   setModalVisible(value) {
     this.setState({ modalVisible: value })
   }
-  handleSubmit() {
-  
+  handleSubmit(e) {
+    e.preventDefault()
+    // 为什么是this.props.form.getFieldsValue 因为在render的时候定义了 let {getFieldDecorator} = this.props.form
+    let formData = this.props.form.getFieldsValue()
+    // console.log(formData)
+    loginOrRegister('register', formData, res => {
+      // console.log(res)
+      res = res.data
+      this.setState({ userNickName: res.NickUserName, userId: res.UserId })
+      localStorage.userId = res.UserId
+      localStorage.userNickName = res.NickUserName
+      if (this.state.action === 'login') { this.setState({ hasLogined: true }) }
+      message.success("请求成功！")
+      this.setModalVisible(false)
+    })
   }
   handleClick(e) {
     if (e.key === 'register') {
@@ -42,9 +59,7 @@ class PCHeader extends React.Component {
       <Menu.Item key='logout' className='register'>
         <Button type='primary' htmlType='button'>{this.state.userNickName}</Button>
         &nbsp;&nbsp;
-        <Link target='_blank'>
           <Button type='dashed' htmlType='button'>个人中心</Button>
-        </Link>
         &nbsp;&nbsp;
         <Button type='ghost' htmlType='button'>退出</Button>
       </Menu.Item>
@@ -62,7 +77,7 @@ class PCHeader extends React.Component {
               <span>ReactNews</span>
             </a>
           </Col>
-          <Col span={16}>
+          <Col span={18}>
             <Menu mode='horizontal' selectedKeys={[this.state.current]} onClick={this.handleClick.bind(this)}>
               <Menu.Item key='top'><Icon type='appstore' /> 头条</Menu.Item>
               <Menu.Item key='shehui'><Icon type='appstore' /> 社会</Menu.Item>
@@ -77,15 +92,27 @@ class PCHeader extends React.Component {
             <Modal title='用户中心' wrapClassName='vertical-center-modal' visible={this.state.modalVisible} onCancel={() => this.setModalVisible(false)} onOk={() => this.setModalVisible(false)} okText='关闭'>
               <Tabs type='card'>
                 <TabPane tab='注册' key='2'>
-                  <Form horizontal onSubmit={this.handleSubmit.bind(this)}>
+                  <Form layout='horizontal' onSubmit={this.handleSubmit.bind(this)}>
                     <FormItem label='账户'>
-                      <Input placeholder='请输入您的账号' {...getFieldDecorator('r_userName') } />
+                      {getFieldDecorator('r_userName', {
+                        rules: [{ required: true, message: 'Please input your username!' }],
+                      })(
+                        <Input prefix={<Icon type="user" style={{ fontSize: 13 }} />} placeholder="请输入您的账号" />
+                        )}
                     </FormItem>
                     <FormItem label='密码'>
-                      <Input type='password' placeholder='请输入您的密码' {...getFieldDecorator('r_password') } />
+                      {getFieldDecorator('r_password', {
+                        rules: [{ required: true, message: 'Please input your Password!' }],
+                      })(
+                        <Input prefix={<Icon type="lock" style={{ fontSize: 13 }} />} type="password" placeholder="请输入您的密码" />
+                        )}
                     </FormItem>
                     <FormItem label='确认密码'>
-                      <Input type='password' placeholder='请确认您的密码' {...getFieldDecorator('r_confirmPassword') } />
+                      {getFieldDecorator('r_confirmPassword', {
+                        rules: [{ required: true, message: 'Please input your Password!' }],
+                      })(
+                        <Input prefix={<Icon type="lock" style={{ fontSize: 13 }} />} type="password" placeholder="请确认您的密码" />
+                        )}
                     </FormItem>
                     <Button type='primary' htmlType='submit'>注册</Button>
                   </Form>
@@ -93,7 +120,6 @@ class PCHeader extends React.Component {
               </Tabs>
             </Modal>
           </Col>
-          <Col span={2}></Col>
           <Col span={2}></Col>
         </Row>
       </header>
