@@ -6,8 +6,8 @@ import { Router, Route, hashHistory } from 'react-router'
 import 'antd/lib/button/style/css'
 
 // 引入自己写的样式
-import '../stylus/mobile/mobile'
-import '../stylus/pc/pc'
+import '../stylus/mobile'
+import '../stylus/pc'
 
 // 引入媒体查询
 import MediaQuery from 'react-responsive'
@@ -17,6 +17,8 @@ import PCIndex from 'pc/pc_index'
 import PCNewsDetails from 'pc/pc_news_details'
 // 移动端
 import MobileIndex from 'mobile/mobile_index'
+import MobileNewsDetails from 'mobile/mobile_news_details'
+
 
 class Header extends React.Component {
   render() {
@@ -30,7 +32,11 @@ class Header extends React.Component {
           </Router>
         </MediaQuery>
         <MediaQuery query='(max-device-width:1224px)'>
-          <MobileIndex />
+          <Router history={hashHistory}>
+            <Route path='/' component={MobileIndex}></Route>
+            {/*route 传参数  :uniquekey 就是参数（形参） 他的值是在pc_news_block定义了 */}
+            <Route path='/details/:uniquekey' component={MobileNewsDetails}></Route>
+          </Router>
         </MediaQuery>
       </div>
     )
