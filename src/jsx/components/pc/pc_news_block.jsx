@@ -29,7 +29,7 @@ export default class PCNewsBlock extends React.Component {
       // 此处有个坑   这个函数的返回值是用小括号括起来的，而不是大括号，因为返回的是html片段
       news.map((item, index) => (
         <li key={index}>
-          <Link to={`details/${item.ununiquekey}`} target='_blank'>{item.title}</Link>
+          <Link to={`details/${item.uniquekey}`} target='_blank'>{item.title}</Link>
         </li>
       ))
       : '没有加载到任何新闻'

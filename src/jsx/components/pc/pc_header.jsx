@@ -70,6 +70,7 @@ class PCHeader extends React.Component {
     if (key == 2) { this.setState({ action: 'register' }) }
   }
   render() {
+    // es6解构
     let { getFieldDecorator } = this.props.form
     const userShow = this.state.hasLogined
       ?

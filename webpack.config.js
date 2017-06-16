@@ -43,7 +43,7 @@ module.exports = {
         loader: 'url-loader',
         options: {
           limit: 10000,
-          name: '[name].[ext]'
+          name: 'src/images/[name].[ext]'
         }
       },
       {
@@ -69,8 +69,8 @@ module.exports = {
   output: {
     path: __dirname,
     filename: "./src/bundle.js",
-    publicPath: 'https://raw.githubusercontent.com/liaoyinglong/react-news/master/src/images/'
-    // publicPath: '/'
+    // publicPath: 'https://raw.githubusercontent.com/liaoyinglong/react-news/master/src/images/'
+    publicPath: '/'
   },
   // plugins: debug ? [] : [
   //   new webpack.optimize.DedupePlugin(),
@@ -78,12 +78,13 @@ module.exports = {
   //   new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false }),
   // ]
   plugins: [new extractTextWebpackPlugin('./src/style.css'),
-  new webpack.optimize.UglifyJsPlugin({
-    output: {
-      comments: false,  // remove all comments
-    },
-    compress: {
-      warnings: false
-    }
-  }),]
+    // new webpack.optimize.UglifyJsPlugin({
+    //   output: {
+    //     comments: false,  // remove all comments
+    //   },
+    //   compress: {
+    //     warnings: false
+    //   }
+    // }),
+  ]
 };

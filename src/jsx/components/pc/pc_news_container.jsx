@@ -52,6 +52,9 @@ export default class PCNewContainer extends React.Component {
               <TabPane tab='国内新闻' key='2'>
                 <PCNewsBlock count={22} type='guonei' width='100%' bordered='false' />
               </TabPane>
+              <TabPane tab='娱乐新闻' key='3'>
+                <PCNewsBlock count={22} type='yule' width='100%' bordered='false' />
+              </TabPane>
             </Tabs>
           </Col>
           <Col span={2}></Col>

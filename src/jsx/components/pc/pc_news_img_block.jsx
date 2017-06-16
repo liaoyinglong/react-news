@@ -40,7 +40,7 @@ export default class PCNewsImgBlock extends React.Component {
       // 此处有个坑   这个函数的返回值是用小括号括起来的，而不是大括号，因为返回的是html片段
       news.map((item, index) => (
         <div key={index} className='imageblock'>
-          <Link to={`details/${item.ununiquekey}`} target='_blank'>
+          <Link to={`details/${item.uniquekey}`} target='_blank'>
             <div className="custom-image">
               <img src={item.thumbnail_pic_s} alt="" style={styleImage} />
             </div>
@@ -55,7 +55,7 @@ export default class PCNewsImgBlock extends React.Component {
     // console.log(newsList)
     return (
       <div className='topNewsList'>
-        <Card title={this.props.cartTitle} bordered style={{ width: this.props.width }}>
+        <Card title={this.props.cartTitle} bordered style={{ width: this.props.width}}>
           {ImgsList}
         </Card>
       </div >
