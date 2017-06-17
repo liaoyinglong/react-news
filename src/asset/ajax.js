@@ -47,3 +47,12 @@ export function addComments(body, callback) {
     .then(res => callback && callback(res))
     .catch(err => console.log('请求发生错误' + err))
 }
+
+// 添加收藏
+export function addCollection(body, callback) {
+  axios.get('http://newsapi.gugujiankong.com/Handler.ashx?action=uc&', {
+    params: body
+  })
+    .then(res => callback && callback(res))
+    .catch(err => console.log('请求发生错误' + err))
+}

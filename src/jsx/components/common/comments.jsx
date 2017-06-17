@@ -1,13 +1,20 @@
 import React from 'react'
 import { Router, route, Link, browserHistory } from 'react-router'
 
-import { Row, Col, Menu, Icon, Tabs, message, Form, Input, Button, Checkbox, Modal, Card } from 'antd'
+import { Row, Col, Form, Input, Button, Card, notification,Menu,Tabs  } from 'antd'
 const FormItem = Form.Item
 const SubMenu = Menu.SubMenu
 const TabPane = Tabs.TabPane
 const MenuItemGroup = Menu.ItemGroup
 
-import { getComments, addComments } from 'asset/ajax'
+import { getComments, addComments, addCollection } from 'asset/ajax'
+
+const openNotificationWithIcon = (type) => {
+  notification[type]({
+    message: 'ReactNews 提醒',
+    description: '收藏该文章成功',
+  })
+}
 
 
 class Comments extends React.Component {
@@ -41,6 +48,15 @@ class Comments extends React.Component {
     // 直接调用生命周期的钩子可以让组件重新加载
   }
 
+  addUserCollection() {
+    addCollection({
+      userid: localStorage.userId,
+      uniquekey: this.props.uniquekey,
+    }, res => {
+      // 收藏成功之后进行全局的提醒
+      openNotificationWithIcon('success')
+    })
+  }
   render() {
     let { getFieldDecorator } = this.props.form
     let { comments } = this.state
@@ -65,6 +81,8 @@ class Comments extends React.Component {
                 )}
               </FormItem>
               <Button type='primary' htmlType='submit'>提交评论</Button>
+              &nbsp;&nbsp;
+              <Button type='primary' htmlType='button' onClick={this.addUserCollection.bind(this)}>收藏该文章</Button>
             </Form>
           </Col>
         </Row>
