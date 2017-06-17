@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { Link } from 'react-router'
 import { loginOrRegister } from 'asset/ajax.js'
 
 import { Row, Col, Menu, Icon, Tabs, message, Form, Input, Button, Checkbox, Modal } from 'antd'
@@ -76,8 +76,9 @@ class PCHeader extends React.Component {
       ?
       <Menu.Item key='logout' className='register'>
         <Button type='primary' htmlType='button'>{this.state.userNickName}</Button>
-        &nbsp;&nbsp;
+        &nbsp;&nbsp;<Link target='_blank' to={`/usercenter`}>
           <Button type='dashed' htmlType='button'>个人中心</Button>
+        </Link>
         &nbsp;&nbsp;
         <Button type='ghost' htmlType='button' onClick={this.logout.bind(this)}>退出</Button>
       </Menu.Item>
