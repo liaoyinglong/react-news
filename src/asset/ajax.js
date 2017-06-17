@@ -29,3 +29,21 @@ export function getNewsHtml(body, callback) {
     .catch(err => console.log('请求发生错误' + err))
 
 }
+
+// 获取评论
+export function getComments(body, callback) {
+  axios.get('http://newsapi.gugujiankong.com/Handler.ashx?action=getcomments&', {
+    params: { uniquekey: body }
+  })
+    .then(res => callback && callback(res))
+    .catch(err => console.log('请求发生错误' + err))
+}
+
+// 发表评论
+export function addComments(body, callback) {
+  axios.get('http://newsapi.gugujiankong.com/Handler.ashx?action=comment&', {
+    params: body
+  })
+    .then(res => callback && callback(res))
+    .catch(err => console.log('请求发生错误' + err))
+}

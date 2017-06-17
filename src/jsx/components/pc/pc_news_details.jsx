@@ -4,6 +4,7 @@ import { Row, Col, BackTop } from 'antd'
 import PCHeader from './pc_header'
 import PCFooter from './pc_footer'
 import PCNewsImgBlock from './pc_news_img_block'
+import Comments from '../common/comments'
 
 
 import { getNewsHtml } from 'asset/ajax'
@@ -38,6 +39,8 @@ export default class PCNewsDetails extends Component {
           <Col span={2}></Col>
           <Col span={14} className='container'>
             <div className='articleContainer' dangerouslySetInnerHTML={this.creatMarkup()}></div>
+            <hr />
+            <Comments uniquekey={this.props.params.uniquekey} />
           </Col>
           <Col span={6}>
             <PCNewsImgBlock type='top' count='44' width='100%' cartTitle='相关新闻' imageWidth='150px' />

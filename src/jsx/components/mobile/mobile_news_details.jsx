@@ -3,7 +3,7 @@ import { Row, Col, BackTop } from 'antd'
 
 import MobileHeader from './mobile_header'
 import MobileFooter from './mobile_Footer'
-
+import Comments from '../common/comments'
 
 import { getNewsHtml } from 'asset/ajax'
 
@@ -37,6 +37,8 @@ export default class MobileNewsDetails extends Component {
           <Row>
             <Col span={24} className='container'>
               <div className='articleContainer' dangerouslySetInnerHTML={this.creatMarkup()}></div>
+              <hr />
+              <Comments uniquekey={this.props.params.uniquekey} />
             </Col>
           </Row>
         </div>

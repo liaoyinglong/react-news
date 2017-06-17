@@ -63,6 +63,7 @@ module.exports = {
       'asset': path.resolve(__dirname, 'src/asset'),
       'pc': path.resolve(__dirname, 'src/jsx/components/pc'),
       'mobile': path.resolve(__dirname, 'src/jsx/components/mobile'),
+      'common': path.resolve(__dirname, 'src/jsx/components/common'),
       'images': path.resolve(__dirname, 'src/images'),
     }
   },
