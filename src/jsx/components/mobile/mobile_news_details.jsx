@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Row, Col, BackTop } from 'antd'
 
 import MobileHeader from './mobile_header'
-import MobileFooter from './mobile_Footer'
+import MobileFooter from './mobile_footer'
 import Comments from '../common/comments'
 
 import { getNewsHtml } from 'asset/ajax'

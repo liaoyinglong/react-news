@@ -1,6 +1,8 @@
 import React from 'react'
-
+import { Link } from 'react-router'
 import { loginOrRegister } from 'asset/ajax.js'
+const logoImg = require('../../../images/logo.png')
+
 
 import { Row, Col, Menu, Icon, Tabs, message, Form, Input, Button, Checkbox, Modal } from 'antd'
 const TabPane = Tabs.TabPane
@@ -77,14 +79,14 @@ class MobileHeader extends React.Component {
     let { getFieldDecorator } = this.props.form
     const userShow = this.state.hasLogined
       ?
-      <Icon type='user'></Icon>
+      <Link to='/usercenter'><Icon type='user'></Icon></Link>
       :
       <Icon type='login' onClick={this.login.bind(this)}></Icon>
     return (
       <div>
         <div id="mobileheader">
           <header>
-            <img src="./src/images/logo.png" alt="logo" />
+            <img src={logoImg} alt="logo" />
             <span>ReactNews</span>
             {userShow}
           </header>

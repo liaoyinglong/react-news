@@ -19,9 +19,10 @@ import PCUserCenter from 'pc/pc_usercenter'
 // 移动端
 import MobileIndex from 'mobile/mobile_index'
 import MobileNewsDetails from 'mobile/mobile_news_details'
+import MobileUserCenter from 'mobile/mobile_usercenter'
 
 
-class Header extends React.Component {
+class Main extends React.Component {
   render() {
     return (
       <div>
@@ -38,6 +39,7 @@ class Header extends React.Component {
             <Route path='/' component={MobileIndex}></Route>
             {/*route 传参数  :uniquekey 就是参数（形参） 他的值是在pc_news_block定义了 */}
             <Route path='/details/:uniquekey' component={MobileNewsDetails}></Route>
+            <Route path='/usercenter' component={MobileUserCenter}></Route>
           </Router>
         </MediaQuery>
       </div>
@@ -46,4 +48,4 @@ class Header extends React.Component {
 }
 
 ReactDOM.render(
-  <Header />, document.getElementById('app'))
+  <Main />, document.getElementById('app'))

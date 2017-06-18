@@ -1,20 +1,19 @@
 import React from 'react'
 
-import PCHeader from './pc_header'
-import PCFooter from './pc_footer'
+import MobileHeader from './mobile_header'
+import MobileFooter from './mobile_footer'
 
 import { Tabs, Row, Col } from 'antd'
 
 const TabPane = Tabs.TabPane
 
-export default class PCUeserCenter extends React.Component {
+export default class MobileUeserCenter extends React.Component {
   render() {
     return (
       <div>
-        <PCHeader />
+        <MobileHeader />
         <Row>
-          <Col span={2}></Col>
-          <Col span={20}>
+          <Col span={24}>
             <Tabs>
               <TabPane tab='我的收藏列表' key={1}>
 
@@ -27,10 +26,9 @@ export default class PCUeserCenter extends React.Component {
               </TabPane>
             </Tabs>
           </Col>
-          <Col span={2}></Col>
         </Row>
 
-        <PCFooter />
+        <MobileFooter />
       </div>
     )
   }

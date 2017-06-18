@@ -4,7 +4,7 @@ import { Tabs, Carousel } from 'antd'
 const TabPane = Tabs.TabPane
 import MoblieList from './mobile_list'
 import MobileHeader from './mobile_header'
-import MobileFooter from './mobile_Footer'
+import MobileFooter from './mobile_footer'
 
 const img1 = require('../../../images/carousel_1.jpg')
 const img2 = require('../../../images/carousel_2.jpg')
