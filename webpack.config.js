@@ -75,11 +75,10 @@ module.exports = {
   output: {
     path: __dirname,
     filename: "./src/bundle.js",
-    publicPath: 'https://raw.githubusercontent.com/liaoyinglong/react-news/master/src/images/'
+    publicPath: 'https://raw.githubusercontent.com/liaoyinglong/react-news/master/'
     // publicPath: '/'
   },
   plugins: [
-    new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false }),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new extractTextWebpackPlugin('./src/style.css')
