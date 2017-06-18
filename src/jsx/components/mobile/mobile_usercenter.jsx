@@ -30,7 +30,6 @@ export default class MobileUeserCenter extends React.Component {
     }, res => {
       this.setState({ usercomments: res.data })
     })
-    document.title = "我的收藏列表 - React News | React 驱动的新闻平台"
   }
 
   handleCancel() {

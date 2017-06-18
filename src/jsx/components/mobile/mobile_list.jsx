@@ -65,9 +65,10 @@ export default class MobileList extends React.Component {
             <div className="m_article_img">
               <img src={item.thumbnail_pic_s} alt={item.title} />
             </div>
-            div className="m_article_info">
+            <div className="m_article_info">
               <div className="m_article_title">
-              <span>{item.title}</span>
+                <span>{item.title}</span>
+              </div>
             </div>
             <div className="m_article_desc clearfix">
               <div className="m_article_desc_l">
