@@ -22,7 +22,6 @@ export default class MobileUeserCenter extends React.Component {
 
               </TabPane>
               <TabPane tab='头像设置' key={3}>
-
               </TabPane>
             </Tabs>
           </Col>
