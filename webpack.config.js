@@ -1,10 +1,9 @@
-const debug = process.env.NODE_ENV !== "production"
+// const debug = process.env.NODE_ENV !== "production"
 const webpack = require('webpack')
 const path = require('path')
 const extractTextWebpackPlugin = require('extract-text-webpack-plugin')
 module.exports = {
   context: __dirname,
-  devtool: debug ? "inline-sourcemap" : null,
   entry: './src/jsx/main.jsx',
   module: {
     loaders: [
@@ -76,22 +75,13 @@ module.exports = {
   output: {
     path: __dirname,
     filename: "./src/bundle.js",
-    // publicPath: 'https://raw.githubusercontent.com/liaoyinglong/react-news/master/src/images/'
-    publicPath: '/'
+    publicPath: 'https://raw.githubusercontent.com/liaoyinglong/react-news/master/src/images/'
+    // publicPath: '/'
   },
-  // plugins: debug ? [] : [
-  //   new webpack.optimize.DedupePlugin(),
-  //   new webpack.optimize.OccurenceOrderPlugin(),
-  //   new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false }),
-  // ]
-  plugins: [new extractTextWebpackPlugin('./src/style.css'),
-    // new webpack.optimize.UglifyJsPlugin({
-    //   output: {
-    //     comments: false,  // remove all comments
-    //   },
-    //   compress: {
-    //     warnings: false
-    //   }
-    // }),
+  plugins: [
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false }),
+    new webpack.optimize.OccurrenceOrderPlugin(),
+    new extractTextWebpackPlugin('./src/style.css')
   ]
-};
+}

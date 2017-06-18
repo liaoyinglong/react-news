@@ -5,6 +5,7 @@
 - react-router
 - Ant Design
 - webpack
+- axios
 
 ---
 
@@ -24,3 +25,11 @@
 ![](https://raw.githubusercontent.com/liaoyinglong/react-news/master/src/images/mobile登录.gif)
 ![](https://raw.githubusercontent.com/liaoyinglong/react-news/master/src/images/个人中心.gif)
 ![](https://raw.githubusercontent.com/liaoyinglong/react-news/master/src/images/新闻详情.gif)
+
+---
+
+## 待完善
+
+- [ ] 升级react-router
+
+未完待续...
