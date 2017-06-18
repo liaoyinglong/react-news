@@ -6,7 +6,7 @@ import PCFooter from './pc_footer'
 import { Tabs, Row, Col, Upload, Icon, Modal, Card } from 'antd'
 const TabPane = Tabs.TabPane
 
-import { getUserCollection } from 'asset/ajax'
+import { getUserCollection, getUserComments } from 'asset/ajax'
 
 export default class PCUeserCenter extends React.Component {
   constructor() {
@@ -25,6 +25,12 @@ export default class PCUeserCenter extends React.Component {
     }, res => {
       this.setState({ usercollection: res.data })
     })
+    getUserComments({
+      userid: localStorage.userId
+    }, res => {
+      this.setState({ usercomments: res.data })
+    })
+
     document.title = "我的收藏列表 - React News | React 驱动的新闻平台"
   }
 
@@ -85,7 +91,15 @@ export default class PCUeserCenter extends React.Component {
       ))
       :
       '您还没有收藏任何新闻，快去收藏一些新闻吧'
-
+    const usercommentsList = usercomments.length
+      ?
+      usercomments.map((comment, index) => (
+        <Card key={index} title={`于 ${comment.datetime} 评论了文章 ${comment.uniquekey}`} extra={<a target="_blank" href={`/#/details/${comment.uniquekey}`}>查看</a>}>
+          <p>{comment.Comments}</p>
+        </Card>
+      ))
+      :
+      '您还没有发表过任何评论。'
     return (
       <div>
         <PCHeader />
@@ -101,7 +115,13 @@ export default class PCUeserCenter extends React.Component {
                 </div>
               </TabPane>
               <TabPane tab='我的评论列表' key={2}>
-
+                <div className="comment">
+                  <Row>
+                    <Col span={24}>
+                      {usercommentsList}
+                    </Col>
+                  </Row>
+                </div>
               </TabPane>
               <TabPane tab='头像设置' key={3}>
                 <div className="clearfix">

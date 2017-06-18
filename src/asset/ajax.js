@@ -67,3 +67,10 @@ export function getUserCollection(body, callback) {
 }
 
 // 获取登录用户的评论列表
+export function getUserComments(body, callback) {
+  axios.get('http://newsapi.gugujiankong.com/Handler.ashx?action=getusercomments&', {
+    params: body
+  })
+    .then(res => callback && callback(res))
+    .catch(err => console.log('请求发生错误' + err))
+}

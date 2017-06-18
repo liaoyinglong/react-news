@@ -3,6 +3,7 @@ import { Row, Col, Tabs, Carousel } from 'antd'
 
 import PCNewsBlock from './pc_news_block'
 import PCNewsImgBlock from './pc_news_img_block'
+import PCProduct from './pc_product'
 const TabPane = Tabs.TabPane
 
 const img1 = require('../../../images/carousel_1.jpg')
@@ -25,7 +26,7 @@ export default class PCNewContainer extends React.Component {
       <div>
         <Row>
           <Col span={2}></Col>
-          <Col span={20} className='container'>
+          <Col span={22} className='container'>
             <div className="leftContainer">
               <div className="carousel">
                 <Carousel {...settings}>
@@ -56,6 +57,24 @@ export default class PCNewContainer extends React.Component {
                 <PCNewsBlock count={22} type='yule' width='100%' bordered='false' />
               </TabPane>
             </Tabs>
+            <Tabs className='tabs_product'>
+              <TabPane tab='ReactNews产品列表' key={1}>
+                <PCProduct />
+              </TabPane>
+            </Tabs>
+          </Col>
+        </Row>
+        <Row>
+          <Col span={2}></Col>
+          <Col span={20}>
+            <PCNewsImgBlock type='guoji' count='8' width='100%' cartTitle='国际新闻' imageWidth='112px' />
+          </Col>
+          <Col span={2}></Col>
+        </Row>
+        <Row>
+          <Col span={2}></Col>
+          <Col span={20}>
+            <PCNewsImgBlock type='guonei' count='16' width='100%' cartTitle='国内新闻' imageWidth='112px' />
           </Col>
           <Col span={2}></Col>
         </Row>
