@@ -3,26 +3,59 @@ import { Router, Route, Link, browerHistory } from 'react-router'
 
 import { Row, Col } from 'antd'
 
+import Tloader from 'react-touch-loader'
+
 import { getNews } from 'asset/ajax.js'
 
 export default class MobileList extends React.Component {
   constructor() {
     super()
     this.state = {
-      news: ''
+      news: '',
+      count: 5,
+      hasMore: 0,
+      initializing: 1,
+      refreshedAt: Date.now()
     }
   }
 
   componentWillMount() {
     getNews({
       type: this.props.type,
-      count: this.props.count
+      count: this.state.count
     }, res => {
       this.setState({ news: res.data })
     })
   }
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({
+        hasMore: 1,
+        initializing: 2
+      })
+    }, 2e3)
+  }
+  loadMore(resolve) {
+    setTimeout(() => {
+      var count = this.state.count;
+      this.setState({
+        count: count + 5,
+      })
+      getNews({
+        type: this.props.type,
+        count: this.props.count
+      }, res => {
+        this.setState({ news: res.data })
+      })
+      this.setState({
+        hasMore: count > 0 && count < 50
+      })
+      resolve()
+    }, 2e3)
+  }
 
   render() {
+    let { hasMore, initializing, refreshedAt } = this.state
     const { news } = this.state
     const newsList = news.length
       ?
@@ -51,7 +84,9 @@ export default class MobileList extends React.Component {
       <div>
         <Row>
           <Col span={24}>
-            {newsList}
+            <Tloader className="main" onLoadMore={this.loadMore.bind(this)} hasMore={hasMore} initializing={initializing}>
+              {newsList}
+            </Tloader>
           </Col>
         </Row>
       </div>

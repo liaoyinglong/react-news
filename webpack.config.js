@@ -34,8 +34,14 @@ module.exports = {
         test: /\.styl$/,
         use: extractTextWebpackPlugin.extract({
           fallback: 'style-loader',
-          //resolve-url-loader may be chained before sass-loader if necessary
           use: ['css-loader', 'stylus-loader']
+        })
+      },
+      {
+        test: /\.less$/,
+        use: extractTextWebpackPlugin.extract({
+          fallback: 'style-loader',
+          use: ['css-loader', 'less-loader']
         })
       },
       {
