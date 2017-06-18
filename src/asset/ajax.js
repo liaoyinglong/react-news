@@ -56,3 +56,14 @@ export function addCollection(body, callback) {
     .then(res => callback && callback(res))
     .catch(err => console.log('请求发生错误' + err))
 }
+
+// 获取登录用户收藏列表
+export function getUserCollection(body, callback) {
+  axios.get('http://newsapi.gugujiankong.com/Handler.ashx?action=getuc&', {
+    params: body
+  })
+    .then(res => callback && callback(res))
+    .catch(err => console.log('请求发生错误' + err))
+}
+
+// 获取登录用户的评论列表

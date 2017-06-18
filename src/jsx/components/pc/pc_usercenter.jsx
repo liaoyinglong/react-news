@@ -3,17 +3,29 @@ import React from 'react'
 import PCHeader from './pc_header'
 import PCFooter from './pc_footer'
 
-import { Tabs, Row, Col, Upload, Icon, Modal } from 'antd'
-
+import { Tabs, Row, Col, Upload, Icon, Modal, Card } from 'antd'
 const TabPane = Tabs.TabPane
+
+import { getUserCollection } from 'asset/ajax'
 
 export default class PCUeserCenter extends React.Component {
   constructor() {
     super()
     this.state = {
+      usercollection: '',
+      usercomments: '',
       previewVisible: false,
       previewImage: ''
     }
+  }
+
+  componentDidMount() {
+    getUserCollection({
+      userid: localStorage.userId
+    }, res => {
+      this.setState({ usercollection: res.data })
+    })
+    document.title = "我的收藏列表 - React News | React 驱动的新闻平台"
   }
 
   handleCancel() {
@@ -25,7 +37,22 @@ export default class PCUeserCenter extends React.Component {
       previewVisible: true
     })
   }
-
+  tabsChange(key) {
+    switch (key) {
+      case '1':
+        document.title = "我的收藏列表 - React News | React 驱动的新闻平台"
+        break
+      case '2':
+        document.title = "我的评论列表 - React News | React 驱动的新闻平台"
+        break
+      case '3':
+        document.title = "头像设置 - React News | React 驱动的新闻平台"
+        break
+      default:
+        console.log(4)
+        break
+    }
+  }
   render() {
     const props = {
       // 暂无接口，随便的写的 
@@ -48,15 +75,30 @@ export default class PCUeserCenter extends React.Component {
         })
       }
     }
+    const { usercollection, usercomments } = this.state
+    const usercollectionList = usercollection.length
+      ?
+      usercollection.map((item, index) => (
+        <Card title={item.uniquekey} key={index} extra={<a target='_blank' href={`/#/details/${item.uniquekey}`}>查看</a>}>
+          <p>{item.Title}</p>
+        </Card>
+      ))
+      :
+      '您还没有收藏任何新闻，快去收藏一些新闻吧'
+
     return (
       <div>
         <PCHeader />
         <Row>
           <Col span={2}></Col>
           <Col span={20}>
-            <Tabs>
+            <Tabs onChange={this.tabsChange.bind(this)}>
               <TabPane tab='我的收藏列表' key={1}>
-
+                <div className='comment'>
+                  <Row>
+                    <Col span={24}>{usercollectionList}</Col>
+                  </Row>
+                </div>
               </TabPane>
               <TabPane tab='我的评论列表' key={2}>
 
