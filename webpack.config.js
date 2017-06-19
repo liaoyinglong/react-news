@@ -4,7 +4,11 @@ const path = require('path')
 const extractTextWebpackPlugin = require('extract-text-webpack-plugin')
 module.exports = {
   context: __dirname,
-  entry: './src/jsx/main.jsx',
+  entry: {
+    bundle: './src/jsx/main.jsx',
+    vendor: ['react', 'react-dom', 'react-router', 'axios']
+  },
+  devtool: false,
   module: {
     loaders: [
       {
@@ -74,13 +78,22 @@ module.exports = {
   },
   output: {
     path: __dirname,
-    filename: "./src/bundle.js",
+    filename: "./src/[name].js",
     publicPath: 'https://raw.githubusercontent.com/liaoyinglong/react-news/master/'
     // publicPath: '/'
   },
   plugins: [
-    new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false }),
-    new webpack.optimize.OccurrenceOrderPlugin(),
-    new extractTextWebpackPlugin('./src/style.css')
+    new extractTextWebpackPlugin('./src/style.css'),
+    new webpack.optimize.CommonsChunkPlugin({
+      names: ["vendor"],
+      minChunks: Infinity
+    }),
+    new webpack.optimize.DedupePlugin(),
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('production')
+      }
+    }),
+    new webpack.optimize.UglifyJsPlugin()
   ]
 }
