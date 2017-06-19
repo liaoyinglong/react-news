@@ -96,7 +96,7 @@ class PCHeader extends React.Component {
               <span>ReactNews</span>
             </a>
           </Col>
-          <Col span={16}>
+          <Col span={17}>
             <Menu mode='horizontal' selectedKeys={[this.state.current]} onClick={this.handleClick.bind(this)}>
               <Menu.Item key='top'><Icon type='appstore' /> 头条</Menu.Item>
               <Menu.Item key='shehui'><Icon type='appstore' /> 社会</Menu.Item>
