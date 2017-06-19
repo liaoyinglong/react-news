@@ -11,12 +11,10 @@
     "axios": "^0.16.2",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
-    "react-mixin": "^2.0.2",
     "react-responsive": "^1.2.1",
     "react-router": "^2.8.1",
     "react-router-dom": "^4.1.1",
-    "react-touch-loader": "^1.1.0",
-    "url-loader": "^0.5.9"
+    "react-touch-loader": "^1.1.0"
   },
   "devDependencies": {
     "babel-core": "^6.24.1",
@@ -37,6 +35,7 @@
     "style-loader": "^0.13.1",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",
+    "url-loader": "^0.5.9",
     "webpack": "^3.0.0-rc.1",
     "webpack-dev-server": "^2.4.5"
   }
